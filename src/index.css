@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Premium Dark Palette */
+  --primary: #0a0a0b;      /* Deep Black */
+  --secondary: #c5a059;    /* Refined Gold */
+  --secondary-light: #dfc28d;
+  --accent: #1a1a1c;       /* Slightly lighter black for cards */
+  --text: #e2e2e2;         /* Soft White */
+  --text-dim: #a0a0a0;     /* Muted Text */
+  --white: #ffffff;
+  --border: #2a2a2c;       /* Subtle dark border */
+  
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background-color: var(--primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.app {
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--sans);
+  color: var(--secondary);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 2px; /* Sharper edges for premium look */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+}
+
+.btn-outline {
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.btn-outline:hover {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+section {
+  padding: 6rem 0;
+}
+
+.bg-alt {
+  background-color: #0f0f11;
+}
+
+/* Section Headings */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-header .subtitle {
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
