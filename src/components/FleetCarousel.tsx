@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Users, ShieldCheck } from 'lucide-react';
 import { FLEET } from '../constants';
 import './FleetCarousel.css';
