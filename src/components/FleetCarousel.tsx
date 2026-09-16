@@ -12,6 +12,10 @@ const FleetCarousel: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Touch Swipe State
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
   const handleRotate = (direction: 'next' | 'prev') => {
     if (isAnimating) return;
     setIsAnimating(true);
@@ -30,8 +34,41 @@ const FleetCarousel: React.FC = () => {
     }, 800); // Must match CSS transition time
   };
 
+  // Touch Swipe Event Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const deltaX = touchStartX.current - touchEndX;
+    const deltaY = touchStartY.current - touchEndY;
+
+    // Trigger swipe if horizontal motion is dominant and exceeds 35px threshold
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 35) {
+      if (deltaX > 0) {
+        handleRotate('next'); // Swiped left -> next vehicle
+      } else {
+        handleRotate('prev'); // Swiped right -> previous vehicle
+      }
+    }
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
   return (
-    <div className="fleet-carousel-container" ref={containerRef}>
+    <div 
+      className="fleet-carousel-container" 
+      ref={containerRef}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="carousel-stage">
         {EXTENDED_FLEET.map((vehicle, index) => {
           const diff = index - activeIndex;
@@ -63,6 +100,7 @@ const FleetCarousel: React.FC = () => {
                     src={vehicle.image} 
                     alt={vehicle.model} 
                     className="car-image"
+                    draggable={false}
                   />
                 </div>
               </div>
