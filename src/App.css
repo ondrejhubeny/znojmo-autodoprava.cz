@@ -210,10 +210,10 @@
   gap: 1.5rem;
 }
 
-/* Premium Services Section - Compact Grid for 12 items */
+/* Premium Services Section - 3x3 Grid */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 3rem;
 }
@@ -228,6 +228,7 @@
   position: relative;
   overflow: hidden;
   align-items: flex-start;
+  cursor: pointer;
 }
 
 .service-card-compact::after {
@@ -245,8 +246,8 @@
 
 .service-card-compact:hover {
   transform: translateY(-5px);
-  border-color: rgba(197, 160, 89, 0.2);
-  background: rgba(197, 160, 89, 0.02);
+  border-color: rgba(197, 160, 89, 0.3);
+  background: rgba(197, 160, 89, 0.03);
 }
 
 .service-card-compact:hover::after {
@@ -262,7 +263,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(197, 160, 89, 0.05);
-  border: 1px solid rgba(197, 160, 89, 0.1);
+  border: 1px solid rgba(197, 160, 89, 0.15);
   transition: all 0.3s ease;
 }
 
@@ -277,7 +278,7 @@
 
 .service-content-compact h3 {
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   color: var(--secondary);
   font-weight: 600;
   font-family: var(--sans);
@@ -288,6 +289,64 @@
   color: var(--text-dim);
   line-height: 1.5;
   margin: 0;
+}
+
+/* Mobile Detail Banner for tapped service */
+.service-mobile-detail {
+  display: none; /* Only shown when tapped on mobile */
+  margin-top: 1.25rem;
+  background: rgba(26, 26, 28, 0.95);
+  border: 1px solid var(--secondary);
+  box-shadow: 0 8px 25px rgba(197, 160, 89, 0.2);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-mobile-detail .detail-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.service-mobile-detail .detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-mobile-detail h4 {
+  color: var(--secondary);
+  font-size: 1rem;
+  font-weight: 700;
+  flex-grow: 1;
+  margin-left: 0.6rem;
+}
+
+.service-mobile-detail p {
+  color: var(--text);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.close-detail-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.close-detail-btn:hover {
+  color: var(--secondary);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Contact Section */
@@ -430,10 +489,10 @@
     border-radius: 4px;
   }
   .btn-phone-text {
-    display: none; /* Hide full phone string to prevent line wrap on mobile */
+    display: none;
   }
   section {
-    padding: 4rem 0;
+    padding: 3.5rem 0;
   }
   .hero {
     min-height: 70vh;
@@ -453,10 +512,52 @@
     width: 100%;
     justify-content: center;
   }
+  
+  /* Compact 3x3 Grid for Mobile Services */
   .services-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 1.5rem;
   }
+
+  .service-card-compact {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.85rem 0.35rem;
+    gap: 0.5rem;
+    cursor: pointer;
+    justify-content: center;
+    min-height: 95px;
+    border-radius: 4px;
+  }
+
+  .service-card-compact.active-tap {
+    border-color: var(--secondary);
+    background: rgba(197, 160, 89, 0.15);
+    box-shadow: 0 0 12px rgba(197, 160, 89, 0.25);
+  }
+
+  .service-icon-compact {
+    width: 36px;
+    height: 36px;
+  }
+
+  .service-content-compact h3 {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .desktop-desc {
+    display: none; /* Hide long description in 3x3 mobile grid to keep cards compact */
+  }
+
+  .service-mobile-detail {
+    display: block; /* Shown on mobile when active */
+  }
+
   .contact-card, .contact-form {
     padding: 1.75rem;
   }
@@ -471,5 +572,15 @@
     font-size: 0.7rem;
     padding: 0.4rem 1rem;
     letter-spacing: 0.1em;
+  }
+  .services-grid {
+    gap: 0.4rem;
+  }
+  .service-card-compact {
+    padding: 0.75rem 0.25rem;
+    min-height: 90px;
+  }
+  .service-content-compact h3 {
+    font-size: 0.7rem;
   }
 }

@@ -52,14 +52,9 @@ export const SERVICES: Service[] = [
     description: 'Bezpečný odvoz vás i vašeho vozu kdykoliv potřebujete.',
   },
   {
-    id: 'cycle-bus',
-    title: 'Cyklobus',
-    description: 'Přeprava cyklistů s jejich koly do oblíbených lokalit.',
-  },
-  {
     id: 'wine-cellars',
     title: 'Putování po sklípcích',
-    description: 'Degustační zájezdy do vinných sklípků s jistotou odvozu.',
+    description: 'Degustační zájezdy do vinných sklípců s jistotou odvozu.',
   },
   {
     id: 'shuttle',
@@ -70,16 +65,6 @@ export const SERVICES: Service[] = [
     id: 'cargo-express',
     title: 'Expresní zásilky',
     description: 'Rychlá přeprava balíků a dokumentů dostupná 24/7.',
-  },
-  {
-    id: 'small-cargo',
-    title: 'Drobný náklad',
-    description: 'Přeprava zboží do kapacity maximálně 2 palet.',
-  },
-  {
-    id: 'custom',
-    title: 'Individuální dohoda',
-    description: 'Nenašli jste svou službu? Ozvěte se, domluvíme se na řešení.',
   },
 ];
 
