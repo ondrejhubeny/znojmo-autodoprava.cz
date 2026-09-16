@@ -9,7 +9,9 @@ const EXTENDED_FLEET = [...FLEET, ...FLEET, ...FLEET];
 const FleetCarousel: React.FC = () => {
   // Start at the middle set of the tripled fleet, specifically at E-Class (index 2 + 5 = 7)
   const [activeIndex, setActiveIndex] = useState(7);
+  const [displayedVehicle, setDisplayedVehicle] = useState(EXTENDED_FLEET[7]);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isFadeOut, setIsFadeOut] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Touch Swipe State
@@ -19,9 +21,16 @@ const FleetCarousel: React.FC = () => {
   const handleRotate = (direction: 'next' | 'prev') => {
     if (isAnimating) return;
     setIsAnimating(true);
+    setIsFadeOut(true); // Fade out details in place
     
     const newIndex = direction === 'next' ? activeIndex + 1 : activeIndex - 1;
     setActiveIndex(newIndex);
+
+    // At midpoint of car slide transition, update text and fade back in!
+    setTimeout(() => {
+      setDisplayedVehicle(EXTENDED_FLEET[newIndex]);
+      setIsFadeOut(false);
+    }, 350);
 
     setTimeout(() => {
       setIsAnimating(false);
@@ -104,23 +113,26 @@ const FleetCarousel: React.FC = () => {
                   />
                 </div>
               </div>
-              
-              <div className="vehicle-details-container">
-                <div className="vehicle-details">
-                  <h3>{vehicle.model}</h3>
-                  <div className="v-meta">
-                    <Users size={16} /> <span>{vehicle.capacity}</span>
-                  </div>
-                  <div className={`v-features-fade ${isCenter ? 'visible' : ''}`}>
-                    {vehicle.features.map((f, i) => (
-                      <span key={i} className="f-tag"><ShieldCheck size={12} /> {f}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </div>
           );
         })}
+      </div>
+
+      {/* Stationary Details Container - Stays in place and Fades Out/In */}
+      <div className="stationary-details-wrapper">
+        <div className={`stationary-details ${isFadeOut ? 'fade-out' : 'fade-in'}`}>
+          <h3>{displayedVehicle.model}</h3>
+          <div className="v-meta">
+            <Users size={16} /> <span>{displayedVehicle.capacity}</span>
+          </div>
+          <div className="v-features-fade visible">
+            {displayedVehicle.features.map((f, i) => (
+              <span key={i} className="f-tag">
+                <ShieldCheck size={12} /> {f}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="carousel-nav-overlay">

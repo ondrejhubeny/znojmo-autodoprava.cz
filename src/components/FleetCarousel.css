@@ -3,8 +3,8 @@
   width: 100%;
   max-width: 100vw; /* Prevent overflow */
   margin: 0 auto;
-  padding: 4rem 0;
-  height: 600px;
+  padding: 3rem 0 2rem 0;
+  height: 580px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,7 @@
 
 .carousel-stage {
   position: relative;
-  height: 400px;
+  height: 350px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -106,31 +106,42 @@
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4)) grayscale(0.3) brightness(0.6);
 }
 
-/* Stable Details UI */
-.vehicle-details-container {
-  height: 150px;
+/* Stationary Details Container - Fixed in Place with Fade In/Out */
+.stationary-details-wrapper {
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 1rem;
-  width: 400px;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 15;
 }
 
-.vehicle-details {
+.stationary-details {
   text-align: center;
   width: 100%;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.vehicle-details h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
-  color: var(--text-dim);
-  transition: all 0.8s;
+.stationary-details.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.active .vehicle-details h3 {
+.stationary-details.fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.stationary-details h3 {
   color: var(--secondary);
   font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
 }
 
 .v-meta {
@@ -139,12 +150,8 @@
   justify-content: center;
   gap: 0.5rem;
   color: var(--text-dim);
-  font-size: 0.8rem;
-  opacity: 0.5;
-}
-
-.active .v-meta {
-  opacity: 1;
+  font-size: 0.85rem;
+  opacity: 0.9;
 }
 
 .v-features-fade {
@@ -153,15 +160,6 @@
   margin-top: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.6s ease;
-  pointer-events: none;
-}
-
-.v-features-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .f-tag {
@@ -178,7 +176,7 @@
 /* NAVIGATION */
 .carousel-nav-overlay {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -216,7 +214,7 @@
   display: flex;
   gap: 0.75rem;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .pagination-dot {
@@ -242,16 +240,17 @@
 
 @media (max-width: 768px) {
   .fleet-carousel-container { 
-    height: 500px;
-    padding: 2rem 0;
+    height: 480px;
+    padding: 1.5rem 0;
   }
   .carousel-stage {
-    height: 300px;
+    height: 260px;
   }
   .pos--1, .pos-1 { opacity: 0; transform: translateX(200px) scale(0.6); pointer-events: none; }
   .pos--1 { transform: translateX(-200px) scale(0.6); }
   .nav-btn { width: 44px; height: 44px; }
-  .vehicle-details-container { width: 100%; max-width: 320px; }
+  .stationary-details-wrapper { width: 100%; max-width: 320px; height: 110px; }
+  .stationary-details h3 { font-size: 1.35rem; }
 }
 
 @media (max-width: 425px) {
@@ -264,4 +263,3 @@
     height: 40px;
   }
 }
-
