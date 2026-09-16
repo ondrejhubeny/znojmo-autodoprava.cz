@@ -16,7 +16,7 @@ export interface ExtendedVehicle extends Vehicle {
 export const CONTACT_INFO: ContactInfo = {
   owner: 'Petr Chochola',
   address: 'Vančurova 13, Znojmo 669 02',
-  phones: ['+420 608 707 225', '+420 775 266 556'],
+  phones: ['+420 608 707 225'],
   email: 'petrchochola@seznam.cz',
 };
 
