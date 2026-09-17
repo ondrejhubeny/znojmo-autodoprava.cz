@@ -22,18 +22,53 @@
   align-items: center;
 }
 
+/* Stationary Podium Base & Glow at Center Stage */
+.stationary-podium {
+  position: absolute;
+  width: 320px;
+  aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stationary-podium .podium-glow {
+  position: absolute;
+  width: 140%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.25) 0%, rgba(10, 10, 11, 0) 70%);
+  bottom: 0;
+  border-radius: 100%;
+  transform: translateY(20%);
+  opacity: 1;
+}
+
+.stationary-podium .podium-base {
+  position: absolute;
+  bottom: 15%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+  opacity: 0.5;
+  box-shadow: 0 0 15px var(--secondary);
+}
+
+/* Moving Carousel Items (Cars only) */
 .carousel-item {
   position: absolute;
   width: 300px;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother animation */
+  max-width: 85vw;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Position Logic - Relative to the center item */
+/* Position Logic - Relative to center item */
 .carousel-item.pos-0 { transform: translateX(0) scale(1.2); z-index: 10; opacity: 1; }
 .carousel-item.pos--1 { transform: translateX(-350px) scale(0.85); z-index: 5; opacity: 0.4; }
 .carousel-item.pos-1 { transform: translateX(350px) scale(0.85); z-index: 5; opacity: 0.4; }
@@ -44,48 +79,11 @@
 .carousel-item.pos--3, .carousel-item.pos-3 { transform: translateX(900px) scale(0.5); opacity: 0; z-index: 1; pointer-events: none; }
 .carousel-item.pos--3 { transform: translateX(-900px) scale(0.5); }
 
-.vehicle-podium {
-  position: relative;
+.car-image-container {
   width: 100%;
-  aspect-ratio: 16/9;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.podium-glow {
-  position: absolute;
-  width: 140%;
-  height: 70%;
-  background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.2) 0%, rgba(10, 10, 11, 0) 70%);
-  bottom: 0;
-  border-radius: 100%;
-  transform: translateY(20%);
-  opacity: 0;
-  transition: opacity 0.8s;
-}
-
-.active .podium-glow {
-  opacity: 1;
-}
-
-.podium-base {
-  position: absolute;
-  bottom: 15%;
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-  opacity: 0;
-  transition: opacity 0.8s;
-}
-
-.active .podium-base {
-  opacity: 0.4;
-  box-shadow: 0 0 15px var(--secondary);
-}
-
-.car-image-container {
-  width: 100%;
   z-index: 2;
   transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -96,6 +94,7 @@
 
 .car-image {
   width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6));
@@ -232,6 +231,8 @@
   border-radius: 4px;
 }
 
+/* RESPONSIVE TIERS */
+
 @media (max-width: 1024px) {
   .pos--2, .pos-2 { display: none; }
   .pos--1 { transform: translateX(-250px) scale(0.8); }
@@ -249,17 +250,44 @@
   .pos--1, .pos-1 { opacity: 0; transform: translateX(200px) scale(0.6); pointer-events: none; }
   .pos--1 { transform: translateX(-200px) scale(0.6); }
   .nav-btn { width: 44px; height: 44px; }
-  .stationary-details-wrapper { width: 100%; max-width: 320px; height: 110px; }
+  .stationary-podium { width: 280px; }
+  .stationary-details-wrapper { width: 100%; max-width: 340px; height: 110px; }
   .stationary-details h3 { font-size: 1.35rem; }
 }
 
-@media (max-width: 425px) {
+/* Tier 3: Mobile Small & Medium (<= 480px) - Fix car image clipping */
+@media (max-width: 480px) {
+  .fleet-carousel-container {
+    height: 440px;
+  }
+  .carousel-stage {
+    height: 220px;
+  }
+  .carousel-item {
+    width: 240px; /* Reduced width so scaled car (240 * 1.1 = 264px) easily fits within 320px-450px screens without clipping */
+    max-width: 78vw;
+  }
+  .carousel-item.pos-0 {
+    transform: translateX(0) scale(1.1);
+  }
+  .active .car-image-container {
+    transform: translateY(-10px) scale(1.05);
+  }
+  .stationary-podium {
+    width: 240px;
+  }
   .carousel-nav-overlay {
-    width: 100%;
-    padding: 0 0.5rem;
+    padding: 0 0.25rem;
   }
   .nav-btn {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+  }
+  .stationary-details-wrapper {
+    max-width: 90vw;
+    height: 105px;
+  }
+  .stationary-details h3 {
+    font-size: 1.2rem;
   }
 }

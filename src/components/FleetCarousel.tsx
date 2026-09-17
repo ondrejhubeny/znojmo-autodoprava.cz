@@ -79,6 +79,13 @@ const FleetCarousel: React.FC = () => {
       onTouchEnd={handleTouchEnd}
     >
       <div className="carousel-stage">
+        {/* Stationary Podium Base & Glow - Stays at center position */}
+        <div className="stationary-podium">
+          <div className="podium-glow"></div>
+          <div className="podium-base"></div>
+        </div>
+
+        {/* Cars array - Only images move across the podium stage */}
         {EXTENDED_FLEET.map((vehicle, index) => {
           const diff = index - activeIndex;
           const isCenter = diff === 0;
@@ -91,7 +98,6 @@ const FleetCarousel: React.FC = () => {
               key={`${vehicle.id}-${index}`} 
               className={`carousel-item pos-${diff} ${isCenter ? 'active' : ''}`}
               style={{ 
-                '--glow-color': vehicle.glowColor,
                 transition: isAnimating ? 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
               } as React.CSSProperties}
               onClick={() => {
@@ -101,17 +107,13 @@ const FleetCarousel: React.FC = () => {
                 if (diff === 2) { handleRotate('next'); setTimeout(() => handleRotate('next'), 100); }
               }}
             >
-              <div className="vehicle-podium">
-                <div className="podium-glow"></div>
-                <div className="podium-base"></div>
-                <div className="car-image-container">
-                  <img 
-                    src={vehicle.image} 
-                    alt={vehicle.model} 
-                    className="car-image"
-                    draggable={false}
-                  />
-                </div>
+              <div className="car-image-container">
+                <img 
+                  src={vehicle.image} 
+                  alt={vehicle.model} 
+                  className="car-image"
+                  draggable={false}
+                />
               </div>
             </div>
           );
