@@ -2,36 +2,44 @@ import React from 'react';
 
 import mmrImg from '../assets/references/MMR-CR.webp';
 import egstonImg from '../assets/references/egston.svg';
+import gpoaImg from '../assets/references/gpoa.png';
 import gymplImg from '../assets/references/gympl.png';
 import happyStarImg from '../assets/references/hotel-happy-star.png';
 import lahoferHotelImg from '../assets/references/hotel-lahofer.webp';
 import marielImg from '../assets/references/hotel-mariel.webp';
-import lahoferBlackImg from '../assets/references/lahofer-cerna.png';
+import lahoferRedImg from '../assets/references/lahofer_cervena.png';
 import laufenImg from '../assets/references/laufen.png';
-import happyStarLogoImg from '../assets/references/logo-color.svg';
-import tamuraImg from '../assets/references/tamura.png';
+import savanahImg from '../assets/references/hotel-savanah.svg';
+import msHnaniceImg from '../assets/references/ms-hnanice.webp';
+import nevogaImg from '../assets/references/nevoga.png';
+import saintGobainImg from '../assets/references/saint-gobain.png';
+import smSatovImg from '../assets/references/sm-satov.webp';
 import atletikaImg from '../assets/references/tj-atletika.webp';
 import florbalImg from '../assets/references/tj-florbal.webp';
-import vodafoneImg from '../assets/references/vodafone.png';
+import viniceHnaniceImg from '../assets/references/vinice-hnanice.webp';
 import yageoImg from '../assets/references/yageo-group.png';
 import znojmoYellowImg from '../assets/references/znojmo-zluta.png';
 
 const CLIENT_LOGOS = [
   { name: 'Laufen CZ', src: laufenImg },
-  { name: 'Vinařství LAHOFER', src: lahoferBlackImg },
-  { name: 'Vodafone', src: vodafoneImg },
+  { name: 'Vinařství LAHOFER', src: lahoferRedImg },
+  { name: 'Vinice Hnanice', src: viniceHnaniceImg },
+  { name: 'Nevoga', src: nevogaImg },
+  { name: 'Saint-Gobain', src: saintGobainImg },
   { name: 'MMR ČR', src: mmrImg },
   { name: 'Město Znojmo', src: znojmoYellowImg },
   { name: 'Hotel LAHOFER', src: lahoferHotelImg },
   { name: 'TJ Znojmo Florbal', src: florbalImg },
   { name: 'TJ Znojmo Atletika', src: atletikaImg },
+  { name: 'TJ Slovan Šatov', src: smSatovImg },
   { name: 'Hotel Happy Star', src: happyStarImg },
   { name: 'Egston', src: egstonImg },
   { name: 'Yageo Group', src: yageoImg },
-  { name: 'Tamura', src: tamuraImg },
+  { name: 'GPOA Znojmo', src: gpoaImg },
   { name: 'Gymnázium Znojmo', src: gymplImg },
+  { name: 'MŠ Hnanice', src: msHnaniceImg },
   { name: 'Hotel Mariel', src: marielImg },
-  { name: 'Savannah / Happy Star', src: happyStarLogoImg },
+  { name: 'Hotel Savannah', src: savanahImg },
 ];
 
 // Doubled logos for seamless infinite continuous scroll
