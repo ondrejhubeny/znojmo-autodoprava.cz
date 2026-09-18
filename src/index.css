@@ -5,12 +5,17 @@
   --primary: #0a0a0b;      /* Deep Black */
   --secondary: #c5a059;    /* Refined Gold */
   --secondary-light: #dfc28d;
-  --accent: #1a1a1c;       /* Slightly lighter black for cards */
+  --wine: #8b1e3f;         /* Wine Red Accent */
+  --wine-light: #ab2850;
+  --accent: rgba(26, 26, 28, 0.75); /* Glassmorphism translucent card background */
   --text: #e2e2e2;         /* Soft White */
   --text-dim: #a0a0a0;     /* Muted Text */
   --white: #ffffff;
-  --border: #2a2a2c;       /* Subtle dark border */
+  --border: rgba(197, 160, 89, 0.18); /* Elegant subtle gold-tinted border */
   
+  --glow-gold: rgba(197, 160, 89, 0.12);
+  --glow-wine: rgba(139, 30, 63, 0.14);
+
   --sans: 'Inter', system-ui, -apple-system, sans-serif;
   --max-width: 1200px;
 }
