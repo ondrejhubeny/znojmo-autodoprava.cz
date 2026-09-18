@@ -349,6 +349,87 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* About Section & Client Logo Marquee Ticker */
+.about-text {
+  font-size: 1.125rem;
+  color: var(--text-dim);
+  max-width: 750px;
+  margin-top: 1rem;
+}
+
+.references-ticker-container {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.ref-title {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--secondary);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.logo-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.logo-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  width: max-content;
+  animation: logoMarqueeScroll 35s linear infinite;
+}
+
+.logo-marquee-wrapper:hover .logo-marquee-track {
+  animation-play-state: paused;
+}
+
+.logo-marquee-item {
+  flex-shrink: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+}
+
+.logo-marquee-item img {
+  max-height: 44px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  /* Muted silver-grey by default */
+  filter: grayscale(100%) opacity(0.5) brightness(1.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-marquee-item:hover img {
+  /* Full authentic color on hover */
+  filter: grayscale(0%) opacity(1) brightness(1);
+  transform: scale(1.12);
+}
+
+@keyframes logoMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Contact Section */
 .contact-grid {
   display: grid;
