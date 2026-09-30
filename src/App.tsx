@@ -1,8 +1,8 @@
 import Header from './sections/Header';
 import Hero from './sections/Hero';
+import FleetSection from './sections/FleetSection';
 import StatsSection from './sections/StatsSection';
 import ServicesSection from './sections/ServicesSection';
-import FleetSection from './sections/FleetSection';
 import AboutSection from './sections/AboutSection';
 import ContactSection from './sections/ContactSection';
 import Footer from './sections/Footer';
@@ -14,9 +14,9 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <FleetSection />
         <StatsSection />
         <ServicesSection />
-        <FleetSection />
         <AboutSection />
         <ContactSection />
       </main>

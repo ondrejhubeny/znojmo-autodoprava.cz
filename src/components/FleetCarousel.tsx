@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Users, ShieldCheck } from 'lucide-react';
 import { FLEET } from '../constants';
 import './FleetCarousel.css';
@@ -12,6 +12,7 @@ const FleetCarousel: React.FC = () => {
   const [displayedVehicle, setDisplayedVehicle] = useState(EXTENDED_FLEET[7]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isFadeOut, setIsFadeOut] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Touch Swipe State
@@ -43,13 +44,27 @@ const FleetCarousel: React.FC = () => {
     }, 800); // Must match CSS transition time
   };
 
+  // Auto-Play Rotation (Every 3.5 seconds when not hovered/interacting)
+  useEffect(() => {
+    if (isHovered || isAnimating) return;
+
+    const interval = setInterval(() => {
+      handleRotate('next');
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [activeIndex, isAnimating, isHovered]);
+
   // Touch Swipe Event Handlers
   const handleTouchStart = (e: React.TouchEvent) => {
+    setIsHovered(true);
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    setTimeout(() => setIsHovered(false), 2000); // Resume autoplay 2s after touch releases
+
     if (touchStartX.current === null || touchStartY.current === null) return;
 
     const touchEndX = e.changedTouches[0].clientX;
@@ -77,6 +92,8 @@ const FleetCarousel: React.FC = () => {
       ref={containerRef}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="carousel-stage">
         {/* Stationary Podium Base & Glow - Stays at center position */}
